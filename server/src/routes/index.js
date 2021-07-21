@@ -4,7 +4,7 @@ const get = require('./get');
 
 const router = Router();
 
-router.use('/test', get);
+router.use('/api', get);
 
 
 module.exports = router;
