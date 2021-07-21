@@ -10,24 +10,27 @@ module.exports = router;
 const pageSize = 10;
 
 router.get('/', async (req, res, next) => {
-	const { location, page } = req.query;
+	try {
+		const { location, page } = req.query;
 
-	client.search({
-		categories: 'parking',
-		location
-	}).then(response => {
-		const total = response.jsonBody.total;
+		const parkings = await client.search({
+			categories: 'parking',
+			location
+		});
+	
+		const total = parkings.jsonBody.total;
 		const offset = total - (pageSize * page);
-
-		client.search({
+	
+		const rankedParkings = await client.search({
 			categories: 'parking',
 			sort_by: 'rating',
 			limit: pageSize,
 			location,
 			offset,
-		})
-			.then(response => res.send(response.jsonBody.businesses.reverse()));
-	}).catch(e => {
-		next(e);
-	});
+		});
+	
+		res.send(rankedParkings.jsonBody.businesses.reverse());
+	} catch (err) {
+		next(err);
+	}
 });
