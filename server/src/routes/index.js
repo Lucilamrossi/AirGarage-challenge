@@ -1,10 +1,9 @@
 const { Router } = require('express');
 
-const get = require('./get');
+const parkings = require('./parkings');
 
 const router = Router();
 
-router.use('/api', get);
-
+router.use('/parkings', parkings);
 
 module.exports = router;
