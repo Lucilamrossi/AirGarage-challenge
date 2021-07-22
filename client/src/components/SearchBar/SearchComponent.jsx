@@ -1,16 +1,19 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme) => ({
+import { makeStyles } from '@material-ui/core/styles';
+import theme from '../../utils/theme';
+
+export const useStyles = makeStyles({
   icon: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.primary.main,
     marginRight: theme.spacing(2),
   },
-}));
+});
+
 
 export default function SearchCompoment({ parts, option }) {
   const classes = useStyles();
@@ -22,12 +25,12 @@ export default function SearchCompoment({ parts, option }) {
       </Grid>
       <Grid item xs>
         {parts.map((part, index) => (
-          <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+          <span key={index} style={{ fontWeight: part.highlight ? 700 : 400, color: theme.palette.primary.main}}>
             {part.text}
           </span>
         ))}
 
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" >
           {option.structured_formatting.secondary_text}
         </Typography>
       </Grid>

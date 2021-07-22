@@ -82,7 +82,7 @@ export default function GoogleMaps() {
   return (
     <Autocomplete
       id="google-map-demo"
-      style={{ width: 300 }}
+      style={{ width: 400 }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -108,7 +108,7 @@ export default function GoogleMaps() {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Add a location"
+          label="Search a location"
           variant="outlined"
           fullWidth
         />
