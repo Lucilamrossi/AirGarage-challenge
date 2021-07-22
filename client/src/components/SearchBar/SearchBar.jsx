@@ -108,7 +108,7 @@ export default function GoogleMaps() {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Search a location"
+          label="Choose a location"
           variant="outlined"
           fullWidth
         />
