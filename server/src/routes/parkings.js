@@ -19,8 +19,8 @@ router.get('/', async (req, res, next) => {
 		});
 	
 		const total = parkings.jsonBody.total;
-		const offset = total - (pageSize * page);
-	
+		let offset = total - (pageSize * page);
+		if (offset < 0) offset = 0;
 		const rankedParkings = await client.search({
 			categories: 'parking',
 			sort_by: 'rating',
@@ -31,6 +31,7 @@ router.get('/', async (req, res, next) => {
 	
 		res.send(rankedParkings.jsonBody.businesses.reverse());
 	} catch (err) {
+		console.log(err);
 		next(err);
 	}
 });

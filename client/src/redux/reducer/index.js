@@ -1,7 +1,7 @@
 import { GET_PARKINGS, LOADING, ERROR } from '../constants';
 
 const initialState = {
-  parkings: {},
+  parkings: [],
   loading: false,
   error: false,
 };
@@ -27,12 +27,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
-
-    // case NOT_ERROR:
-    //     return {
-    //         ...state,
-    //         error: false
-    //     };
 
     default:
       return state;
