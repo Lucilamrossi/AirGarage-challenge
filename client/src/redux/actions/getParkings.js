@@ -6,7 +6,6 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const getParkings = (location, page) => async (dispatch) => {
   try {
     if (location) {
-      console.log(location);
       dispatch({
         type: LOADING,
       });

@@ -31,7 +31,6 @@ router.get('/', async (req, res, next) => {
 	
 		res.send(rankedParkings.jsonBody.businesses.reverse());
 	} catch (err) {
-		console.log(err);
 		next(err);
 	}
 });
