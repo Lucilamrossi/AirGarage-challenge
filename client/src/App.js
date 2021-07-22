@@ -1,12 +1,15 @@
-import './App.css';
-import Home from './components/Home/Home';
-import SearchBar from './components/SearchBar/SearchBar';
+import './App.css'
+import Header from './components/Header/Header';
+import SearchContainer from './components/SearchContainer/SearchContainer';
 import ParkingCards from './components/ParkingCards/ParkingCards';
+
 function App() {
+
+
   return (
-    <div>
-      <Home />
-      <SearchBar />
+    <div className='app-body'>
+      <Header />
+      <SearchContainer />
       <ParkingCards />
     </div>
   );
