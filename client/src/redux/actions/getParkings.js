@@ -21,7 +21,7 @@ export const getParkings = (location, page) => async (dispatch) => {
     } else {
       dispatch({
         type: GET_PARKINGS,
-        payload: {},
+        payload: [],
       });
     }
   } catch (error) {
