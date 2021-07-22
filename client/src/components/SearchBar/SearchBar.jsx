@@ -1,13 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import parse from 'autosuggest-highlight/parse';
+import throttle from 'lodash/throttle';
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
 import { makeStyles } from '@material-ui/core/styles';
-import parse from 'autosuggest-highlight/parse';
-import throttle from 'lodash/throttle';
-import { useDispatch } from 'react-redux';
+
 import { getParkings } from '../../redux/actions/getParkings';
 
 function loadScript(src, position, id) {
@@ -47,7 +50,7 @@ export default function GoogleMaps() {
       loadScript(
         `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&libraries=places`,
         document.querySelector('head'),
-        'google-maps',
+        'google-maps'
       );
     }
 
@@ -59,14 +62,15 @@ export default function GoogleMaps() {
       throttle((request, callback) => {
         autocompleteService.current.getPlacePredictions(request, callback);
       }, 200),
-    [],
+    []
   );
 
   React.useEffect(() => {
     let active = true;
 
     if (!autocompleteService.current && window.google) {
-      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+      autocompleteService.current =
+        new window.google.maps.places.AutocompleteService();
     }
     if (!autocompleteService.current) {
       return undefined;
@@ -102,7 +106,9 @@ export default function GoogleMaps() {
     <Autocomplete
       id="google-map-demo"
       style={{ width: 300 }}
-      getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
+      getOptionLabel={(option) =>
+        typeof option === 'string' ? option : option.description
+      }
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -112,20 +118,28 @@ export default function GoogleMaps() {
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
-        const location = newValue?.description ? newValue.description : newValue
-        dispatch(getParkings(location, 1))
+        const location = newValue?.description
+          ? newValue.description
+          : newValue;
+        dispatch(getParkings(location, 1));
       }}
       onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue); 
+        setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" variant="outlined" fullWidth />
+        <TextField
+          {...params}
+          label="Add a location"
+          variant="outlined"
+          fullWidth
+        />
       )}
       renderOption={(option) => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+        const matches =
+          option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length]),
+          matches.map((match) => [match.offset, match.offset + match.length])
         );
 
         return (
@@ -135,7 +149,10 @@ export default function GoogleMaps() {
             </Grid>
             <Grid item xs>
               {parts.map((part, index) => (
-                <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+                <span
+                  key={index}
+                  style={{ fontWeight: part.highlight ? 700 : 400 }}
+                >
                   {part.text}
                 </span>
               ))}
