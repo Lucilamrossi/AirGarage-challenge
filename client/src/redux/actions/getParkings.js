@@ -11,7 +11,7 @@ export const getParkings = (location, page) => async (dispatch) => {
       });
       dispatch({
         type: SET_QUERIES,
-        payload: {location, page}
+        payload: { location, page },
       });
       const { data } = await axios.get(
         `${BACKEND_URL}parkings?location=${location}&page=${page}`
@@ -19,12 +19,12 @@ export const getParkings = (location, page) => async (dispatch) => {
 
       dispatch({
         type: GET_PARKINGS,
-        payload: {parkingLots: data.parkingLots, totalPages: data.totalPages},
+        payload: { parkingLots: data.parkingLots, totalPages: data.totalPages },
       });
     } else {
       dispatch({
         type: GET_PARKINGS,
-        payload: {parkingLots: [], totalPages: 0},
+        payload: { parkingLots: [], totalPages: 0 },
       });
     }
   } catch (error) {

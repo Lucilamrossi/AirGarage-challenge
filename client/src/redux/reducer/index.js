@@ -5,7 +5,7 @@ const initialState = {
   totalPages: 0,
   loading: false,
   error: false,
-  queries: {}
+  queries: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,8 +13,8 @@ const reducer = (state = initialState, action) => {
     case SET_QUERIES:
       return {
         ...state,
-        queries: action.payload
-      }
+        queries: action.payload,
+      };
     case GET_PARKINGS:
       return {
         ...state,

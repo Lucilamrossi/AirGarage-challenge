@@ -1,43 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { getParkings } from '../../redux/actions/getParkings';
+
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-import { getParkings } from '../../redux/actions/getParkings';
-
-function loadScript(src, position, id) {
-  if (!position) {
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.setAttribute('async', '');
-  script.setAttribute('id', id);
-  script.src = src;
-  position.appendChild(script);
-}
+import loadScript from './loadScript';
+import SearchCompoment from './SearchComponent';
 
 const autocompleteService = { current: null };
-
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(2),
-  },
-}));
-
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default function GoogleMaps() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
@@ -48,7 +25,7 @@ export default function GoogleMaps() {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&libraries=places&types=geocode`,
         document.querySelector('head'),
         'google-maps'
       );
@@ -118,9 +95,11 @@ export default function GoogleMaps() {
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
+
         const location = newValue?.description
           ? newValue.description
           : newValue;
+
         dispatch(getParkings(location, 1));
       }}
       onInputChange={(event, newInputValue) => {
@@ -142,27 +121,7 @@ export default function GoogleMaps() {
           matches.map((match) => [match.offset, match.offset + match.length])
         );
 
-        return (
-          <Grid container alignItems="center">
-            <Grid item>
-              <LocationOnIcon className={classes.icon} />
-            </Grid>
-            <Grid item xs>
-              {parts.map((part, index) => (
-                <span
-                  key={index}
-                  style={{ fontWeight: part.highlight ? 700 : 400 }}
-                >
-                  {part.text}
-                </span>
-              ))}
-
-              <Typography variant="body2" color="textSecondary">
-                {option.structured_formatting.secondary_text}
-              </Typography>
-            </Grid>
-          </Grid>
-        );
+        return <SearchCompoment parts={parts} option={option} />;
       }}
     />
   );
