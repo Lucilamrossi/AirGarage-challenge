@@ -11,6 +11,7 @@ export const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     padding: '2rem',
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
   },
   searchContainer: {
     display: 'flex',

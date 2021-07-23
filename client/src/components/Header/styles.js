@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
     justifyContent: 'space-arround',
   },
   toolbar: {
-    minHeight: '8rem',
+    minHeight: '5rem',
     backgroundColor: theme.palette.primary.light,
     display: 'flex',
     alignItems: 'center',

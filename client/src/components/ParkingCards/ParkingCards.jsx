@@ -25,7 +25,7 @@ export default function ParkingCards() {
     dispatch(getParkings({ ...queries, page: value }));
   };
   const handlePageSizeChange = (event) => {
-    dispatch(getParkings({ ...queries, pageSize: event.target.value }));
+    dispatch(getParkings({ ...queries, page: 1, pageSize: event.target.value }));
   };
 
   return (
