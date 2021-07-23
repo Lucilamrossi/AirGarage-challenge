@@ -1,5 +1,5 @@
 import { createTheme } from '@material-ui/core/styles';
-import LuisGeorgeCafe from './fonts/Louis-George-Cafe.woff'
+import LuisGeorgeCafe from './fonts/Louis-George-Cafe.woff';
 
 const louisGeorgeCafe = {
   fontFamily: 'Louis George Cafe',
@@ -7,22 +7,20 @@ const louisGeorgeCafe = {
   src: `
     local('Louis-George-Cafe'),
     url(${LuisGeorgeCafe}) format('woff')
-    url("//db.onlinewebfonts.com/t/a617b62cd8089465865a37c676da00e2.woff") format("woff")
   `,
 };
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fa824c',
-      dark: '#333',
-      light: '#fec',
-      contrastText: '#fec',
+      main: 'rgb(250, 130, 76)',
+      dark: 'rgb(68, 66, 66)',
+      light: 'rgb(255, 238, 204)',
+      contrastText: 'rgba(251, 246, 235, 0.664)',
     },
   },
   typography: {
     fontFamily: 'Louis George Cafe',
-    
   },
   overrides: {
     MuiCssBaseline: {
@@ -30,24 +28,6 @@ const theme = createTheme({
         '@font-face': [louisGeorgeCafe],
       },
     },
-    // MuiButton: {
-    //   containedPrimary: {
-    //     '&:hover': {
-    //       backgroundColor: 'black',
-    //       color: '#FFFF01',
-    //       fontWeight: 800,
-    //     },
-    //   },
-    //   containedSecondary: {
-    //     backgroundColor: 'black',
-    //     color: 'white',
-    //     '&:hover': {
-    //       backgroundColor: '#FFFF01',
-    //       color: 'black',
-    //       fontWeight: 800,
-    //     },
-    //   },
-    // },
   },
 });
 
