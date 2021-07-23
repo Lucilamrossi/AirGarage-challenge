@@ -1,17 +1,8 @@
-# AirGarage-challenge API
+# AirGarage-challenge 
 
 ## Installation
 
-1. Install all dependencies inside server folder
-2. Go to https://www.yelp.com/developers and create an account in oder to get your apiKey
-3. Once you have gotten your apiKey create a .env file in your server folder
-4. Add the following variables: 
-
-PORT=**the port number of your preference**
-
-API_KEY=**apiKey nummber that you got on step 2**
-
-7. run "npm star" 
+> This challenge contains a back and front end. Please follow the instructions on each ReadMe file for a correct function of the app.
 
 ## Contact me!
 
