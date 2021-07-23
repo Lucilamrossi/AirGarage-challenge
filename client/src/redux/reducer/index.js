@@ -33,7 +33,10 @@ const reducer = (state = initialState, action) => {
     case ERROR:
       return {
         ...state,
+        loading: false,
         error: action.payload,
+        parkings: [],
+        queries: {},
       };
 
     default:
