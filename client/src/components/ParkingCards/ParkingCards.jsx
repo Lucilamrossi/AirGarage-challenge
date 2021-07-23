@@ -83,10 +83,16 @@ export default function ParkingCards() {
             className={`${classes.container} ${classes.notFound}`}
           >
             <div className={classes.filter}>
+            {error === 'empty' ? 
               <Typography className={classes.notFoundText}>
                 No parking lots found
                 <span>Please try again with a different location</span>
+              </Typography> :
+              <Typography className={classes.notFoundText}>
+                An error has occurred 
+                <span>Please try again later</span>
               </Typography>
+              }
             </div>
           </Grid>
         </Fade>

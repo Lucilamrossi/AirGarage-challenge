@@ -18,14 +18,22 @@ export const getParkings =
         const { data } = await axios.get(
           `${BACKEND_URL}parkings?location=${location}&page=${page}&pageSize=${pageSize}`
         );
-
-        dispatch({
-          type: GET_PARKINGS,
-          payload: {
-            parkingLots: data.parkingLots,
-            totalPages: data.totalPages,
-          },
-        });
+        
+        if(data.parkingLots.length > 0) {
+          dispatch({
+            type: GET_PARKINGS,
+            payload: {
+              parkingLots: data.parkingLots,
+              totalPages: data.totalPages,
+            },
+          });
+        } else {
+          dispatch({
+            type: ERROR,
+            payload: 'empty'
+          });
+        }
+        
       } else {
         dispatch({
           type: GET_PARKINGS,
