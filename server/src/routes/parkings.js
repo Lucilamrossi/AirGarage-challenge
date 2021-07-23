@@ -7,11 +7,9 @@ const client = yelp.client(process.env.API_KEY); // eslint-disable-line no-undef
 var router = express.Router();
 module.exports = router;
 
-let pageSize = 10;
-
 router.get('/', async (req, res, next) => {
 	try {
-		const { location, page } = req.query;
+		const { location, page, pageSize } = req.query;
 
 		const parkings = await client.search({
 			categories: 'parking',
