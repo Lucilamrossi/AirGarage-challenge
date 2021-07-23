@@ -10,13 +10,8 @@ const server = express();
 
 server.name = 'API';
 
-// server.use(express.urlencoded({ extended: true, limit: '50mb' }));
-// server.use(express.json());
-// server.use(morgan('dev'));
 server.use(setHeaders);
-
 server.use('/', routes);
-
 server.use(errorHandler);
 
 module.exports = server;

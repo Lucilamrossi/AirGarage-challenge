@@ -1,8 +1,7 @@
 const { Router } = require('express');
+const router = Router();
 
 const parkings = require('./parkings');
-
-const router = Router();
 
 router.use('/parkings', parkings);
 
