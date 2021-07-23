@@ -9,7 +9,11 @@ module.exports = router;
 
 router.get('/', async (req, res, next) => {
 	try {
-		const { location, page, pageSize } = req.query;
+		let { location, page, pageSize } = req.query;
+
+		if(!location) throw new Error('location must be given');
+		if(!page) page = 1;
+		if(!pageSize) pageSize = 6;
 
 		const parkings = await client.search({
 			categories: 'parking',
