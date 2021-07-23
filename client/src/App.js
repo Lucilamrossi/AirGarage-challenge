@@ -1,16 +1,13 @@
-import './App.css'
-import Header from './components/Header/Header';
-import SearchContainer from './components/SearchContainer/SearchContainer';
-import ParkingCards from './components/ParkingCards/ParkingCards';
+import './App.css';
+import Home from './components/Home/Home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
-
-
   return (
-    <div className='app-body'>
-      <Header />
-      <SearchContainer />
-      <ParkingCards />
+    <div className="app-body">
+      <Router>
+        <Route path="/" component={Home} />
+      </Router>
     </div>
   );
 }

@@ -1,11 +1,13 @@
-import React from 'react';
+import Header from '../Header/Header';
+import SearchContainer from '../SearchContainer/SearchContainer';
+import ParkingCards from '../ParkingCards/ParkingCards';
 
-const Home = () => {
+export default function Home() {
   return (
     <div>
-      <p>Challenge</p>
+      <Header />
+      <SearchContainer />
+      <ParkingCards />
     </div>
   );
-};
-
-export default Home;
+}
