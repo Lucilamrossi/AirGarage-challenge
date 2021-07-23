@@ -23,8 +23,9 @@ router.get('/', async (req, res, next) => {
 		const total = parkings.jsonBody.total;
 		let offset = total - (pageSize * page);
 		let limit = pageSize;
+		
 		if (offset < 0) {
-			limit = pageSize + offset;
+			limit = Number(pageSize) + offset;
 			offset = 0;
 		}
 		const rankedParkings = await client.search({
