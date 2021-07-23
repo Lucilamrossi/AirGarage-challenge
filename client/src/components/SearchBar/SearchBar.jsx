@@ -1,26 +1,28 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getParkings } from '../../redux/actions/getParkings';
+import loadScript from './loadScript';
+import SearchCompoment from './SearchComponent';
 
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
-import loadScript from './loadScript';
-import SearchCompoment from './SearchComponent';
+import { useStyles } from './styles';
 
 const autocompleteService = { current: null };
 const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export default function GoogleMaps() {
+export default function SearchBar() {
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
-
   const dispatch = useDispatch();
+  const classes = useStyles();
+  const { queries } = useSelector((state) => state);
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
@@ -82,7 +84,7 @@ export default function GoogleMaps() {
   return (
     <Autocomplete
       id="google-map-demo"
-      style={{ width: 400 }}
+      className={classes.autocomplete}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -100,7 +102,9 @@ export default function GoogleMaps() {
           ? newValue.description
           : newValue;
 
-        dispatch(getParkings(location, 1));
+        dispatch(
+          getParkings({ location, page: 1, pageSize: queries?.pageSize || 6 })
+        );
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
