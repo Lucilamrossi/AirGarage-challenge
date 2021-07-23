@@ -4,23 +4,22 @@ import theme from '../../utils/theme';
 export const useStyles = makeStyles({
   root: {
     display: 'flex',
-    justifyContent: 'space-arround'
+    justifyContent: 'space-arround',
   },
   toolbar: {
     minHeight: '8rem',
     backgroundColor: theme.palette.primary.light,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     color: theme.palette.primary.main,
-    padding: '0 1rem'
+    padding: '0 1rem',
   },
   media: {
     minHeight: 50,
     width: 150,
-    margin: '0 1rem'
+    margin: '0 1rem',
   },
 });
-
