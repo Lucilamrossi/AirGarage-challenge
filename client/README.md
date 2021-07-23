@@ -13,7 +13,7 @@ REACT_APP_BACKEND_URL=**url (online or local) of the backend**
 
 REACT_APP_GOOGLE_API_KEY=**apiKey number that you got on step 2**
 
-7. run "npm star" 
+7. run "npm start" 
 
 ## Contact me!
 
