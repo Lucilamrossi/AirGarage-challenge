@@ -11,6 +11,8 @@ PORT=**the port number of your preference**
 
 API_KEY=**apiKey number that you got on step 2**
 
+CLIENT_URL=**front end url from where you will make request to this api**
+
 7. run "npm star" 
 
 ## Contact me!
